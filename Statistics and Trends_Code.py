@@ -64,35 +64,63 @@ def filter_data(data_r, col_name,  col_val, contries, years):
     return data_filter, data_filter_trans
 
 
-def bar_plot(f_data, title_name, x_lab, y_lab):
+def bar_plot(f_data_b, title_name_b, x_lab_b, y_lab_b):
     '''
     This function is used for bar plotting
 
     Parameters
     ----------
-    f_data : The filtered dataset for plotting
-    title_name : The title of the bar plot
+    f_data : The filtered dataset for bar plotting
+    title_name : Title of the bar plot
     x_lab : x-label
     y_lab : y-label
 
     '''
 
-    bx = f_data.plot.bar(x='Country Name', rot=0,
+    bx = f_data_b.plot.bar(x='Country Name', rot=0,
                          figsize=(50, 30), fontsize=50)
     # Setting yticks
-    bx.set_yticks([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+    bx.set_yticks([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11])
     # Setting the title for the plot
-    bx.set_title(title_name.upper(), fontsize=60, fontweight='bold')
+    bx.set_title(title_name_b.upper(), fontsize=60, fontweight='bold')
     # Setting the x-label for the plot
-    bx.set_xlabel(x_lab, fontsize=50)
+    bx.set_xlabel(x_lab_b, fontsize=50)
     # Setting the y-label for the plot
-    bx.set_ylabel(y_lab, fontsize=50)
+    bx.set_ylabel(y_lab_b, fontsize=50)
     bx.legend(fontsize=50)
-    plt.savefig(title_name + '.png')
+    plt.savefig(title_name_b + '.png')
     plt.show()
     # Return statement is used at the end of a function
     return
 
+
+def line_plot(f_data_l, title_name_l, x_lab_l, y_lab_l):
+    '''
+    This function is used for line plotting
+
+    Parameters
+    ----------
+    f_data_l : The filtered dataset for line plotting
+    title_name_l : Title of the line plot
+    x_lab_l : x-label
+    y_lab_l : y-label
+    
+    '''
+    
+    lx = f_data_l.plot.line(figsize=(50,30), fontsize=36, linewidth=7.0)
+    # Setting yticks
+    lx.set_yticks([50, 55, 60, 65, 70, 75, 80, 85, 90])
+    # Setting the title for the plot
+    lx.set_title(title_name_l.upper(), fontsize=60, fontweight='bold')
+    # Setting the x-label for the plot
+    lx.set_xlabel(x_lab_l,fontsize=50)
+    # Setting the y-label for the plot
+    lx.set_ylabel(y_lab_l, fontsize=50)
+    lx.legend(fontsize=50)
+    plt.savefig(title_name_l + '.png')
+    plt.show()
+    # Return statement is used at the end of a function
+    return
 
 # Calling the function for reading data and assigning it in a variable
 dataset = data_reading("Gender_Equality.csv")
@@ -101,7 +129,7 @@ dataset = data_reading("Gender_Equality.csv")
 # List of countries for bar plotting
 countries_bar = ['Indonesia', 'Pakistan', 'India', 'China', 'Mongolia']
 # List of years for bar plotting
-year_bar = ['1998', '2002', '2006', '2010', '2014', '2016', '2020']
+year_bar = ['1994', '1998', '2002', '2006', '2010', '2014', '2018']
 # Calling the data filtering function for 1st bar plot and assinging its values in variables
 data_bar1, data_bar1_t = filter_data(
     dataset, 'Indicator Name', 'Unemployment, male (% of male labor force) (modeled ILO estimate)', countries_bar, year_bar)
@@ -123,3 +151,28 @@ print(data_bar2_t)
 # Calling the function for 2nd bar plotting
 bar_plot(data_bar2, 'Unemployment (female)',
          'Countries', 'Unemployment rate (females, % of female labor force)')
+
+
+# List of countries for line plotting
+countries_line= ['Japan', 'Iraq', 'Kuwait', 'Afghanistan', 'Philippines']
+# List of years for line plotting
+year_line = ['1995', '1998', '2001', '2004', '2007', '2010', '2013', '2016', '2019']
+# Calling the data filtering function for 1st line plot and assinging its values in variables
+data_line1, data_line1_t = filter_data(dataset, 'Indicator Name','Life expectancy at birth, male (years)', countries_line, year_line)
+# Printing the dataset with years as columns
+print(data_line1)
+# Printing the transposed dataset with countries as columns
+print(data_line1_t)
+# Calling the function for 2nd line plotting
+line_plot(data_line1_t, 'Life expectancy at birth (male)', 'Year', 'Life expectancy at birth, male (years)')
+
+
+# Calling the data filtering function for 2nd line plot and assinging its values in variables
+data_line2, data_line2_t = filter_data(dataset, 'Indicator Name','Life expectancy at birth, female (years)', countries_line, year_line)
+# Printing the dataset with years as columns
+print(data_line2)
+# Printing the transposed dataset with countries as columns
+print(data_line2_t)
+# Calling the function for 2nd line plotting
+line_plot(data_line2_t, 'Life expectancy at birth (female)', 'Year', 'Life expectancy at birth, female (years)')
+
