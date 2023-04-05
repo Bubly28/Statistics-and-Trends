@@ -279,8 +279,8 @@ skewness = stats.skew(data_des['Life expectancy at birth, male (years)'])
 # Finding kurtosis
 kurtosis = data_des['Life expectancy at birth, female (years)'].kurtosis()
 # Printing the value of skewness
-print('Skewness of Population in Brazil : ', skewness)
+print('Skewness of Life expectancy of male in China : ', skewness)
 # Printinf the value of kurtosis
-print('kurtosis of CO2 emissions  in Brazil : ', kurtosis)
+print('Kurtosis of Life expectancy of female in China : ', kurtosis)
 # Saving the file in csv format
 summary_statistics.to_csv("China's Summary Statistics.csv")
