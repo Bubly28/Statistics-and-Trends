@@ -205,7 +205,7 @@ print(data_bar1)
 print(data_bar1_t)
 # Calling the function for 1st bar plotting
 bar_plot(data_bar1, 'Unemployment (male)',
-         'Countries', 'Unemployment rate (males, % of male labour force)')
+         'Countries', 'Unemployment rate')
 
 # Calling the data filtering function for 2nd bar plot and assinging its values in variables
 data_bar2, data_bar2_t = filter_data(
@@ -216,7 +216,7 @@ print(data_bar2)
 print(data_bar2_t)
 # Calling the function for 2nd bar plotting
 bar_plot(data_bar2, 'Unemployment (female)',
-         'Countries', 'Unemployment rate (females, % of female labor force)')
+         'Countries', 'Unemployment rate')
 
 
 # List of countries for line plotting
@@ -233,7 +233,7 @@ print(data_line1)
 print(data_line1_t)
 # Calling the function for 2nd line plotting
 line_plot(data_line1_t, 'Life expectancy at birth (male)',
-          'Year', 'Life expectancy at birth, male (years)')
+          'Year', 'Life expectancy rate')
 
 
 # Calling the data filtering function for 2nd line plot and assinging its values in variables
@@ -245,7 +245,7 @@ print(data_line2)
 print(data_line2_t)
 # Calling the function for 2nd line plotting
 line_plot(data_line2_t, 'Life expectancy at birth (female)',
-          'Year', 'Life expectancy at birth, female (years)')
+          'Year', 'Life expectancy at birth rate')
 
 # List of years for plotting heatmap
 years_h = ['2000', '2002', '2004', '2006', '2008', '2010']
