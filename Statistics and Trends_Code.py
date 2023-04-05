@@ -5,9 +5,9 @@ Created on Tue Apr  4 20:15:02 2023
 @author: hp
 """
 
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import scipy.stats as stats
 import seaborn as sns
 
 
@@ -181,7 +181,7 @@ def heat_map(data_h, con_h, gen, color):
     '''
     plt.figure(figsize=(20, 18))
     h_map = sns.heatmap(data_h.corr(), annot=True, cmap=color)
-    #Setting title for heatmap
+    # Setting title for heatmap
     h_map.set_title(con_h + '(' + gen + ')')
     plt.savefig(con_h + gen + ".png", dpi=300, bbox_inches='tight')
     # Return statement is used at the end of a function
@@ -265,3 +265,22 @@ ind_h_f = ['Mortality rate, adult, female (per 1,000 female adults)', 'Survival 
 d_heat = stat_fn(dataset, 'Country Name', 'India', years_h, ind_h_f)
 # Calling the function for plotting the 2nd heatmap
 heat_map(d_heat, 'India', 'Female', 'GnBu')
+
+start = 1995
+end = 2015
+year_des = [str(i) for i in range(start, end+1)]
+ind_des = ['Unemployment, male (% of male labor force) (modeled ILO estimate)', 'Unemployment, female (% of female labor force) (modeled ILO estimate)',
+           'Life expectancy at birth, male (years)', 'Life expectancy at birth, female (years)']
+data_des = stat_fn(dataset, 'Country Name', 'China', year_des, ind_des)
+# Describing the data
+summary_statistics = data_des.describe()
+# Finding skewness
+skewness = stats.skew(data_des['Life expectancy at birth, male (years)'])
+# Finding kurtosis
+kurtosis = data_des['Life expectancy at birth, female (years)'].kurtosis()
+# Printing the value of skewness
+print('Skewness of Population in Brazil : ', skewness)
+# Printinf the value of kurtosis
+print('kurtosis of CO2 emissions  in Brazil : ', kurtosis)
+# Saving the file in csv format
+summary_statistics.to_csv("China's Summary Statistics.csv")
